@@ -27,4 +27,3 @@ The rules can be customized in the rules.json file. Each rule has a boolean valu
 
 Dependencies
 The program requires the argparse and json libraries to run.
-
