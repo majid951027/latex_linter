@@ -4,7 +4,7 @@ This is a simple linter for LaTeX files. It reads a LaTeX file and performs seve
 How to Use
 The program can be run from the command line using the following command:
 
-python3 latex_linter.py fileName.tex
+    python3 latex_linter.py fileName.tex
 
 Replace "fileName.tex" with the name of the LaTeX file you want to modify.
 
@@ -27,3 +27,4 @@ The rules can be customized in the rules.json file. Each rule has a boolean valu
 
 Dependencies
 The program requires the argparse and json libraries to run.
+

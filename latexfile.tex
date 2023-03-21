@@ -1,0 +1,109 @@
+\documentclass[a4paper, titlepage]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{algorithm,algpseudocode}
+\usepackage{listings} %för uppgift 3
+\renewcommand{\thesubsubsection}{\thesection.\alph{subsubsection}}
+\usepackage{minted}
+\usepackage[version=4]{mhchem} % for H2O
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\chapter{plain}
+Hej majid detta är första meningen. Nu kommer andra meningen.
+
+
+\title{Laboration 2\\Grunder i \LaTeX, MA1475}%majids kommentar
+\author{Majid Mohamed Hamid}
+\date{VT 2021}
+\begin{document}
+
+\maketitle
+\begin{center} 
+Laborationsuppgifter 
+\end{center}
+
+\section{Hantera referenser}
+\begin{thebibliography}{0}
+\bibitem{algoritms} Jeffrey H. Kingston, \emph{Algoritms and Data Structures}, second edition,\\ Addison-Wesley, Harlow, England, 1997.
+
+\bibitem{cyber security} Tomasz Surmacs and Anders Carlsson, \emph{Cyber Security for Next Generation\\Experts}, Exakta print AB, Malmö, 2018.
+
+\bibitem{Databasteknik} Tomas Padron-McCarthy and Tore Risch and studentlitteratur, \\\emph{Databasteknik}, studentlitteratur AB, Lund, 2014. 
+\end{thebibliography}
+
+\section{Felhantering}
+\subsection*{Introduktion}
+Låt $k$ vara ett heltal och sätt $n = 2k$. Då är
+\begin{equation}\label{eq:ekv}
+(-1)^n = (-1)^{2k} = ((-1)^2)^k = 1^k = 1.
+\end{equation}
+Från \ref{eq:ekv} och $i^2 = -1$ följer att $i^{4k} = (i^2)^{2k} = 1.$ 
+Vidare följer från $\sqrt{2} \notin \mathbb{Q}$ att
+
+
+\section{Typsättning av programkod}
+\begin{minted}{python}
+def f(a, b):
+  if a == b:
+      return a
+  elif a % 2 == 0:
+      if b % 2 == 0:  #både a och är jämna
+          return 2 * f(a//2, b//2)
+      else:           #a är jämn och b är udda
+          return f(a//2, b)
+  else:
+      if b % 2 == 0:  #a är udda och b är jämn
+          return f(a, b//2)
+      else:           #både a och b är udda
+          if a > b:
+              return f(a - b, b)
+          else:       #a < b
+              return f(a, b - a)
+\end{minted}                
+
+\newpage
+\section{Programmering}
+\subsubsection{}
+\newcommand{\vatten}[1]{%
+Den kemiska formeln #1 beskriver den kemiska föreningen vatten.%
+}
+\vatten{\ce{H2O}}
+
+\subsubsection{}%b
+\begin{figure}
+\centering
+\includegraphics[scale=0.1]{majid.jpg}%en bild som jag kan referera till
+\caption{Nyårsafton 2021}
+\label{minfigur}
+\end{figure}
+
+\newcommand{\figref}[1]{%
+se figur \ref{#1} på sidan \pageref{#1}%
+}
+\figref{minfigur}
+
+\subsubsection{}%c
+\newcommand{\VIKTIGT}[1]{%
+\fcolorbox{red}{red}{\textcolor{yellow}{\MakeUppercase{\textbf{\underline{#1}}}}}%
+}
+\VIKTIGT{Bismillah alrahman alrahim}
+
+\subsubsection{}%d
+\newcommand{\JB}[2]{%
+My name is #2, #1 #2.%
+}
+\JB{James}{Bond}
+
+\subsubsection{}%e
+\newcommand{\coolpil}[4]{
+\begin{tikzpicture}
+\draw[color = #2, fill = #1, very thick][scale=0.5] (0,0)--(5,0)--(5,-1)--(7,1)--(5,3)--(5,2)--(0,2)--(0,0);
+\node[right] at (0,0.5){\textcolor{#3}{#4}};
+\end{tikzpicture}
+}
+\coolpil{yellow}{red}{blue}{\LARGE Utgång}
+\coolpil{cyan}{blue}{black}{\Large VÄNSTER}
+\end{document}
