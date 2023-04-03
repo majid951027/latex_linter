@@ -1,6 +1,6 @@
 {
-    "newline": false,
+    "newline": true,
     "comments_space": true,
-    "adding_tabs": false,
-    "blank_lines": false
+    "adding_tabs": true,
+    "blank_lines": true
 }
