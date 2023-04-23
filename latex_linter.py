@@ -47,15 +47,10 @@ class linter_rules:
             for i, line in enumerate(self.lines_container):
                 if "%" in line:
                     continue
-                for symbols in [". ", "!", "?"]:
+                for symbols in [". ", "! ", "? "]:
                     if symbols in line:
                         split_line = line.split(symbols)
-                        split_line = [
-                            s.strip() for s in split_line
-                        ]  # Remove whitespace
-                        split_line = [s + symbols for s in split_line[:-1]] + [
-                            split_line[-1]
-                        ]
+                        split_line = [s + symbols for s in split_line[:-1]] + [split_line[-1]]
                         line = "\n".join(split_line)
                 self.lines_container[i] = line
         else:
