@@ -50,7 +50,9 @@ class linter_rules:
                 for symbols in [". ", "!", "?"]:
                     if symbols in line:
                         split_line = line.split(symbols)
-                        split_line = [s.strip() for s in split_line]  # Remove whitespace
+                        split_line = [
+                            s.strip() for s in split_line
+                        ]  # Remove whitespace
                         split_line = [s + symbols for s in split_line[:-1]] + [
                             split_line[-1]
                         ]
