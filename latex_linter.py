@@ -47,12 +47,10 @@ class linter_rules:
             for i, line in enumerate(self.lines_container):
                 if "%" in line:
                     continue
-                for symbols in [".", "!", "?"]:
+                for symbols in [". ", "!", "?"]:
                     if symbols in line:
                         split_line = line.split(symbols)
-                        split_line = [
-                            s.strip() for s in split_line
-                        ]  # Remove whitespace
+                        split_line = [s.strip() for s in split_line]  # Remove whitespace
                         split_line = [s + symbols for s in split_line[:-1]] + [
                             split_line[-1]
                         ]
@@ -98,8 +96,9 @@ class linter_rules:
                     seperated_words = line.split()
                     try:
                         if seperated_words[0].startswith(tuple(sign_list)):
-                            self.lines_container.insert(index + 1, "\n")
-                            index += 1
+                            if self.lines_container[index + 1] != "\n":
+                                self.lines_container.insert(index + 1, "\n")
+                                index += 1
                     except IndexError:
                         continue
             else:
@@ -116,7 +115,7 @@ class linter_rules:
         try:
             if self.obj.get("comment_space", True):
                 for index, line in enumerate(self.lines_container):
-                    if "%" in line:
+                    if " %" in line:
                         self.lines_container[index] = line.replace("%", "% ")
             else:
                 print(
