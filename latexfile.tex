@@ -12,7 +12,7 @@
 \usepackage{tikz}
 
 \chapter{plain}
-Hi my name is Majid and this is my first sentence. This is my second sentence. This is my third sentence and it should ADD newline.
+Hi my name is Majid \% this is between percent sign and not comment \%\ this is my first sentence. This is my last sentence. %well done
 sdfsdf
 
 
@@ -51,17 +51,17 @@ def f(a, b):
   if a == b:
       return a
   elif a % 2 == 0:
-      if b % 2 == 0:  #både a och är jämna
+      if b % 2 == 0:
           return 2 * f(a//2, b//2)
-      else:           #a är jämn och b är udda
+      else:
           return f(a//2, b)
   else:
-      if b % 2 == 0:  #a är udda och b är jämn
+      if b % 2 == 0:
           return f(a, b//2)
-      else:           #både a och b är udda
+      else:
           if a > b:
               return f(a - b, b)
-          else:       #a < b
+          else:
               return f(a, b - a)
 \end{minted}                
 

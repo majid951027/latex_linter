@@ -50,7 +50,9 @@ class linter_rules:
                 for symbols in [". ", "! ", "? "]:
                     if symbols in line:
                         split_line = line.split(symbols)
-                        split_line = [s + symbols for s in split_line[:-1]] + [split_line[-1]]
+                        split_line = [s + symbols for s in split_line[:-1]] + [
+                            split_line[-1]
+                        ]
                         line = "\n".join(split_line)
                 self.lines_container[i] = line
         else:
@@ -109,11 +111,27 @@ class linter_rules:
 
     def format_comment(self):
         """Formats comments to be in the same line as the text."""
+        comment_sign = "%"
         try:
             if self.obj.get("comment_space", True):
                 for index, line in enumerate(self.lines_container):
-                    if " %" in line:
-                        self.lines_container[index] = line.replace("%", "% ")
+                    i = 0
+                    while i < len(line):
+                        if line[i : i + 2] == "% ":
+                            i += 2  # skip over the space
+                        elif line[i : i + 2] == "%\\":
+                            i += 2  # skip over the backslash and %
+                        elif line[i] == comment_sign:
+                            if i + 1 < len(line) and line[i + 1] == "\\":
+                                i += 2  # skip over backslash and %
+                            elif i + 1 >= len(line) or line[i + 1] != " ":
+                                line = line[: i + 1] + " " + line[i + 1 :]
+                                i += 2  # skip over the added space
+                            else:
+                                i += 1  # already has space after %
+                        else:
+                            i += 1  # move to the next character
+                    self.lines_container[index] = line
             else:
                 print(
                     "The value of 'format_comment' in the JSON file is either False or missing. Please read README file."
